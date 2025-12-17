@@ -1,0 +1,104 @@
+This is the list of ModBus registers for the BSK notus device. 
+
+| Addr | Register                       | Readable name                          | Approx data type                                            |
+| ---: | ------------------------------ | -------------------------------------- | ----------------------------------------------------------- |
+|    0 | Reg_Device_OnOff               | Device power (On / Off)                | bool (0/1)                                                  |
+|    1 | Reg_Aspirator_Fan_Speed        | Extract (aspirator) fan speed %        | uint16 (0–100)                                              |
+|    2 | Reg_Vantilator_Fan_Speed       | Supply (ventilator) fan speed %        | uint16 (0–100)                                              |
+|    3 | Reg_Set_Temperature            | Target supply air temperature (°C)     | uint16 (scaled 0.1°C, 150–300)                              |
+|    4 | Reg_Auto_Mode                  | Operation mode (Manual / Auto)         | enum (0/1)                                                  |
+|    5 | Reg_Last_Heater_State          | Last heater command state              | bool (0/1)                                                  |
+|    6 | Reg_Last_Heater_Status         | Last heater actual status              | bool (0/1)                                                  |
+|    7 | Reg_Pre_Heater_Status          | Pre-heater status                      | bool (0/1)                                                  |
+|    8 | Reg_Pre_Heater_Connection      | Pre-heater connection status           | bool (0/1)                                                  |
+|    9 | Reg_Defrost_Mode               | Defrost active status                  | bool (0/1)                                                  |
+|   10 | Reg_Defrost_Temp               | Defrost temperature                    | int16 (°C, likely 1°C steps)                                |
+|   11 | Reg_Free_Cooling_Setting       | Free cooling mode setting              | enum (0=Off,1=On,2=Auto)                                    |
+|   12 | Reg_Free_Cooling_Status        | Free cooling active status             | bool (0/1)                                                  |
+|   13 | Reg_Manual_Boost_State         | Manual boost enabled                   | bool (0/1)                                                  |
+|   14 | Reg_Manual_Boost_Vnt_Speed     | Manual boost supply fan speed %        | uint16 (0–100)                                              |
+|   15 | Reg_Manual_Boost_Asp_Speed     | Manual boost extract fan speed %       | uint16 (0–100)                                              |
+|   16 | Reg_Manual_Boost_Time          | Manual boost duration (minutes)        | uint16 (1–255)                                              |
+|   17 | Reg_Set_Humidity               | Target humidity level %                | uint16 (0–100)                                              |
+|   18 | Reg_Humidty_Control_Hysteresis | Humidity control hysteresis %          | uint16 (0–10)                                               |
+|   19 | Reg_Humidty_Boost              | Humidity boost active                  | bool (0/1)                                                  |
+|   20 | Reg_Humidty_Boost_Vnt_Speed    | Humidity boost supply fan speed %      | uint16 (0–100)                                              |
+|   21 | Reg_Humidty_Boost_Asp_Speed    | Humidity boost extract fan speed %     | uint16 (0–100)                                              |
+|   22 | Reg_External_Boost             | External boost input active            | bool (0/1)                                                  |
+|   23 | Reg_External_Boost_Vnt_Speed   | External boost supply fan speed %      | uint16 (0–100)                                              |
+|   24 | Reg_External_Boost_Asp_Speed   | External boost extract fan speed %     | uint16 (0–100)                                              |
+|   25 | Reg_Set_Co2_Ppm                | CO₂ target level (ppm)                 | uint16 (400–2500)                                           |
+|   26 | Reg_Co2_Boost_Status           | CO₂ boost active                       | bool (0/1)                                                  |
+|   27 | Reg_Co2_Boost_Vnt_Speed        | CO₂ boost supply fan speed %           | uint16 (0–100)                                              |
+|   28 | Reg_Co2_Boost_Asp_Speed        | CO₂ boost extract fan speed %          | uint16 (0–100)                                              |
+|   29 | Reg_Damper_Operation_Reverse   | Damper direction (Normal / Reversed)   | enum (0/1)                                                  |
+|   30 | Reg_Damper_Open_Time           | Damper opening time (seconds)          | uint16 (seconds)                                            |
+|   31 | Reg_Damper_Open_Cooldown_Time  | Damper open cooldown time (seconds)    | uint16 (seconds)                                            |
+|   32 | Reg_Damper_Close_Time          | Damper closing time (seconds)          | uint16 (seconds)                                            |
+|   33 | Reg_Damper_Close_Cooldown_Time | Damper close cooldown time (seconds)   | uint16 (seconds)                                            |
+|   34 | Reg_Sensor_Port_1_Config       | Sensor port 1 configuration            | uint16 (config/bitfield?)                                   |
+|   35 | Reg_Sensor_Port_2_Config       | Sensor port 2 configuration            | uint16 (config/bitfield?)                                   |
+|   36 | Reg_Sensor_Port_3_Config       | Sensor port 3 configuration            | uint16 (config/bitfield?)                                   |
+|   37 | Reg_Sensor_Port_4_Config       | Sensor port 4 configuration            | uint16 (config/bitfield?)                                   |
+|   38 | Reg_Sensor_Port_5_Config       | Sensor port 5 configuration            | uint16 (config/bitfield?)                                   |
+|   39 | Reg_Sensor_Port_6_Config       | Sensor port 6 configuration            | uint16 (config/bitfield?)                                   |
+|   40 | Reg_Sensor_Port_5_Value        | Sensor port 5 measured value           | uint16 (raw; note says “0–500000” but Modbus reg is 16-bit) |
+|   41 | Reg_Sensor_Port_6_Value        | Sensor port 6 temperature value        | int16 (scaled 0.1°C likely)                                 |
+|   42 | Reg_Fan_Port_1_Config          | Fan port 1 configuration               | uint16 (config/bitfield?)                                   |
+|   43 | Reg_Fan_Port_2_Config          | Fan port 2 configuration               | uint16 (config/bitfield?)                                   |
+|   44 | Reg_Fan_Min_Duty               | Fan minimum PWM duty                   | uint16 (raw duty / %)                                       |
+|   45 | Reg_Fan_Max_Duty               | Fan maximum PWM duty                   | uint16 (raw duty / %)                                       |
+|   46 | Reg_Fan_1_Sleep_Speed          | Fan 1 sleep speed                      | uint16 (0–100 or profile index)                             |
+|   47 | Reg_Fan_1_Low_Speed            | Fan 1 low speed                        | uint16 (0–100 or profile index)                             |
+|   48 | Reg_Fan_1_Mid_Speed            | Fan 1 medium speed                     | uint16 (0–100 or profile index)                             |
+|   49 | Reg_Fan_1_High_Speed           | Fan 1 high speed                       | uint16 (0–100 or profile index)                             |
+|   50 | Reg_Fan_1_Boost_Speed          | Fan 1 boost speed                      | uint16 (0–100 or profile index)                             |
+|   51 | Reg_Fan_2_Sleep_Speed          | Fan 2 sleep speed                      | uint16 (0–100 or profile index)                             |
+|   52 | Reg_Fan_2_Low_Speed            | Fan 2 low speed                        | uint16 (0–100 or profile index)                             |
+|   53 | Reg_Fan_2_Mid_Speed            | Fan 2 medium speed                     | uint16 (0–100 or profile index)                             |
+|   54 | Reg_Fan_2_High_Speed           | Fan 2 high speed                       | uint16 (0–100 or profile index)                             |
+|   55 | Reg_Fan_2_Boost_Speed          | Fan 2 boost speed                      | uint16 (0–100 or profile index)                             |
+|   56 | Reg_Fan_1_RPM                  | Fan 1 actual RPM                       | uint16 (rpm)                                                |
+|   57 | Reg_Fan_2_RPM                  | Fan 2 actual RPM                       | uint16 (rpm)                                                |
+|   58 | Reg_ModBus_Port_1_Baudrate     | Modbus port 1 baud rate                | enum or uint16 (lookup)                                     |
+|   59 | Reg_ModBus_Port_1_Parity       | Modbus port 1 parity                   | enum (lookup)                                               |
+|   60 | Reg_ModBus_Port_2_Baudrate     | Modbus port 2 baud rate                | enum or uint16 (lookup)                                     |
+|   61 | Reg_ModBus_Port_2_Parity       | Modbus port 2 parity                   | enum (lookup)                                               |
+|   62 | Reg_RTC_Second                 | RTC seconds                            | uint16 (0–59)                                               |
+|   63 | Reg_RTC_Minute                 | RTC minutes                            | uint16 (0–59)                                               |
+|   64 | Reg_RTC_Hour                   | RTC hours                              | uint16 (0–23)                                               |
+|   65 | Reg_RTC_Day                    | RTC day                                | uint16 (1–31)                                               |
+|   66 | Reg_RTC_Month                  | RTC month                              | uint16 (1–12)                                               |
+|   67 | Reg_RTC_Year                   | RTC year                               | uint16 (e.g., 2024) or uint16 (0–99 offset)                 |
+|   68 | Reg_FMEM_PROG_CNT              | Internal program counter               | uint16 (counter)                                            |
+|   69 | Reg_Device_Address             | Modbus device address                  | uint16 (1–247 typical)                                      |
+|   70 | Reg_Fan_Speed_Warning          | Fan speed warning flag                 | bool or bitfield                                            |
+|   71 | Reg_Filter_Level               | Filter clogging level                  | uint16 (0–100 or raw)                                       |
+|   72 | Reg_Scheduler_0_Day            | Scheduler 0 active days                | uint16 (bitmask likely)                                     |
+|   73 | Reg_Scheduler_0_Time           | Scheduler 0 time                       | uint16 (HHMM or minutes-from-midnight)                      |
+|   74 | Reg_Scheduler_0_Operation      | Scheduler 0 operation                  | enum (operation code)                                       |
+|   75 | Reg_Scheduler_1_Day            | Scheduler 1 active days                | uint16 (bitmask likely)                                     |
+|   76 | Reg_Scheduler_1_Time           | Scheduler 1 time                       | uint16 (HHMM or minutes-from-midnight)                      |
+|   77 | Reg_Scheduler_1_Operation      | Scheduler 1 operation                  | enum (operation code)                                       |
+|   78 | Reg_Scheduler_2_Day            | Scheduler 2 active days                | uint16 (bitmask likely)                                     |
+|   79 | Reg_Scheduler_2_Time           | Scheduler 2 time                       | uint16 (HHMM or minutes-from-midnight)                      |
+|   80 | Reg_Scheduler_2_Operation      | Scheduler 2 operation                  | enum (operation code)                                       |
+|   81 | Reg_Scheduler_3_Day            | Scheduler 3 active days                | uint16 (bitmask likely)                                     |
+|   82 | Reg_Scheduler_3_Time           | Scheduler 3 time                       | uint16 (HHMM or minutes-from-midnight)                      |
+|   83 | Reg_Scheduler_3_Operation      | Scheduler 3 operation                  | enum (operation code)                                       |
+|   84 | Reg_Scheduler_4_Day            | Scheduler 4 active days                | uint16 (bitmask likely)                                     |
+|   85 | Reg_Scheduler_4_Time           | Scheduler 4 time                       | uint16 (HHMM or minutes-from-midnight)                      |
+|   86 | Reg_Scheduler_4_Operation      | Scheduler 4 operation                  | enum (operation code)                                       |
+|   87 | Reg_Scheduler_5_Day            | Scheduler 5 active days                | uint16 (bitmask likely)                                     |
+|   88 | Reg_Scheduler_5_Time           | Scheduler 5 time                       | uint16 (HHMM or minutes-from-midnight)                      |
+|   89 | Reg_Scheduler_5_Operation      | Scheduler 5 operation                  | enum (operation code)                                       |
+|   90 | Reg_OpMode                     | Current operating mode                 | enum (unknown mapping)                                      |
+|   91 | Reg_Co2_Auto_Mode_State        | CO₂ auto mode status                   | bool or enum                                                |
+|   92 | Reg_Co2_Ppm_Ven_Max_Value      | CO₂ max level for ventilation          | uint16 (ppm)                                                |
+|   93 | Reg_Co2_Ppm_Ven_Min_Value      | CO₂ min level for ventilation          | uint16 (ppm)                                                |
+|   94 | Reg_Co2_Ppm_Asp_Max_Value      | CO₂ max level for extraction           | uint16 (ppm)                                                |
+|   95 | Reg_Co2_Ppm_Asp_Min_Value      | CO₂ min level for extraction           | uint16 (ppm)                                                |
+|   96 | Reg_Co2_Ppm_Level_Max_Value    | CO₂ maximum alarm level                | uint16 (ppm)                                                |
+|   97 | Reg_Co2_Ppm_Level_Min_Value    | CO₂ minimum alarm level                | uint16 (ppm)                                                |
+|   98 | Reg_Filter_Level_Coeff_1       | Filter level calibration coefficient 1 | uint16 (calibration)                                        |
+|   99 | Reg_Filter_Level_Coeff_2       | Filter level calibration coefficient 2 | uint16 (calibration)                                        |
